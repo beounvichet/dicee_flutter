@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   return runApp(
@@ -23,12 +24,14 @@ class DicePage extends StatefulWidget {   //StatefulWidget can use HOT Restart /
 class _DicePageState extends State<DicePage> {
   int leftDee = 2;
   int rightDee = 5;
+  Random random = new Random();
 
   @override
 
   Widget build(BuildContext context) {
 
     //leftDee = 3;
+    int randomNumber = random.nextInt(6) +1; // from 0 upto 99 included
 
     return SafeArea(
       child: Center(
@@ -39,7 +42,9 @@ class _DicePageState extends State<DicePage> {
               child: TextButton(
                 onPressed: () {
                   setState(() {
-                    leftDee = 4;
+
+                      leftDee = randomNumber;
+
                   });
 
                 },
@@ -48,7 +53,9 @@ class _DicePageState extends State<DicePage> {
             ),
             Expanded(
               child: TextButton(onPressed: () {
-                GetRan();
+                setState(() {
+                  rightDee = randomNumber;
+                });
               },
               child: Image.asset('images/dice$rightDee.png', width: 150,),),
             ),
@@ -60,7 +67,7 @@ class _DicePageState extends State<DicePage> {
 }
 
 void GetRan(){
-  print('object');
+
 
 
 }
