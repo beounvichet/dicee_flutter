@@ -24,14 +24,22 @@ class DicePage extends StatefulWidget {   //StatefulWidget can use HOT Restart /
 class _DicePageState extends State<DicePage> {
   int leftDee = 2;
   int rightDee = 5;
-  Random random = new Random();
 
   @override
 
   Widget build(BuildContext context) {
 
+    //Random random = new Random();
     //leftDee = 3;
-    int randomNumber = random.nextInt(6) +1; // from 0 upto 99 included
+    //int randomNumber = random.nextInt(6) + 1; // from 0 upto 99 included
+
+    void GetRan(){
+      setState(() {
+        leftDee = Random().nextInt(6) + 1;
+        rightDee = Random().nextInt(6) + 1;
+      });
+
+    }
 
     return SafeArea(
       child: Center(
@@ -41,21 +49,14 @@ class _DicePageState extends State<DicePage> {
               //flex: 2,
               child: TextButton(
                 onPressed: () {
-                  setState(() {
-
-                      leftDee = randomNumber;
-
-                  });
-
+                    GetRan();
                 },
                 child: Image.asset('images/dice$leftDee.png', width: 150,),
               ),
             ),
             Expanded(
               child: TextButton(onPressed: () {
-                setState(() {
-                  rightDee = randomNumber;
-                });
+                  GetRan();
               },
               child: Image.asset('images/dice$rightDee.png', width: 150,),),
             ),
@@ -66,8 +67,4 @@ class _DicePageState extends State<DicePage> {
   }
 }
 
-void GetRan(){
 
-
-
-}
